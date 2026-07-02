@@ -40,4 +40,11 @@ public class Seat {
     public BigDecimal getPrice() {
         return pricingStrategy.getPrice();
     }
+
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "seatNumber='" + seatNumber + '\'' +
+                '}';
+    }
 }

@@ -35,4 +35,12 @@ public class Movie {
     public Duration getDuration() {
         return Duration.ofMinutes(durationInMinutes);
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", duration=" + getDuration() +
+                '}';
+    }
 }

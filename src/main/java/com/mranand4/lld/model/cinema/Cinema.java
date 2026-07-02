@@ -48,4 +48,12 @@ public class Cinema {
     public void addRoom(Room room) {
         rooms.add(room);
     }
+
+    @Override
+    public String toString() {
+        return "Cinema{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

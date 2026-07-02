@@ -47,4 +47,13 @@ public class Order {
                 .map(Ticket::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", tickets=" + tickets +
+                ", orderDate=" + orderDate +
+                '}';
+    }
 }

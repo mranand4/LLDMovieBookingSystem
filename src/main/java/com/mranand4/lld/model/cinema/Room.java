@@ -33,4 +33,11 @@ public class Room {
     public void setLayout(Layout layout) {
         this.layout = layout;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNumber='" + roomNumber + '\'' +
+                '}';
+    }
 }

@@ -72,4 +72,15 @@ public class Screening {
     public Duration getDuration() {
         return Duration.between(startTime, endTime);
     }
+
+    @Override
+    public String toString() {
+        return "Screening{" +
+                "movie=" + movie +
+                ", room=" + room +
+                ", cinema=" + cinema +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }
