@@ -6,6 +6,7 @@ import com.mranand4.lld.model.cinema.Room;
 import com.mranand4.lld.model.cinema.Seat;
 import com.mranand4.lld.model.order.Ticket;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,28 @@ public class ScreeningManager {
                 .add(ticket);
     }
 
+    public synchronized Ticket bookTicketOptimistically(Screening screening, Seat seat) throws IllegalStateException {
+
+        List<Seat> bookedSeats = ticketsByScreening
+                                    .computeIfAbsent(screening, k -> new ArrayList<>())
+                                    .stream()
+                                    .map(Ticket::getSeat)
+                                    .toList();
+
+        if(bookedSeats.contains(seat)) {
+            throw new IllegalStateException("Seat is already booked ...");
+        }
+
+        BigDecimal price = seat.getPrice();
+        Ticket ticket = new Ticket(screening, seat, price);
+
+        ticketsByScreening
+                .computeIfAbsent(screening, k -> new ArrayList<>())
+                .add(ticket);
+
+        return ticket;
+    }
+
     public List<Screening> getScreeningsForMovie(Movie movie) {
         return screeningsByMovie.getOrDefault(movie, new ArrayList<>());
     }
@@ -55,6 +78,10 @@ public class ScreeningManager {
         }
 
         return availableSeats;
+    }
+
+    public boolean isSeatAvailable(Screening screening, Seat seat) {
+        return getAvailableSeats(screening).contains(seat);
     }
 
 

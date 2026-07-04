@@ -9,6 +9,7 @@ import com.mranand4.lld.model.cinema.Seat;
 import com.mranand4.lld.model.pricing.NormalPrice;
 import com.mranand4.lld.model.pricing.PremiumPrice;
 import com.mranand4.lld.service.MovieBookingSystem;
+import com.mranand4.lld.service.PessimisticLockMovieBookingSystem;
 import com.mranand4.lld.service.SimpleMovieBookingSystem;
 
 import java.math.BigDecimal;
@@ -34,7 +35,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MovieBookingSystem mbs = new SimpleMovieBookingSystem();
+        MovieBookingSystem mbs = new PessimisticLockMovieBookingSystem();
 
         Movie movie1 = new Movie("Lord Of The Rings 1", 178);
         Movie movie2 = new Movie("Shrek", 90);
